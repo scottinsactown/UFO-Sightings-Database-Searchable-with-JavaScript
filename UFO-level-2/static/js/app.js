@@ -28,15 +28,20 @@ button.on("click", function() {
 
   // Select the input element and get the raw HTML node
   let inputElement = d3.select("#datetime");
+  let inputElementCity = d3.select("#city");
 
   // Get the value property of the input element
   let inputValue = inputElement.property("value");
+  let inputValueCity = inputElementCity.property("value");
+
 //   console.log(inputValue);
 
   let filteredData = tableData.filter(date => date.datetime === inputValue);
+  let filteredData2 = filteredData.filter(city =>city.city === inputValueCity);
+
 //   console.log(filteredData);
 
-  filteredData.forEach(function(ufoReport) {
+  filteredData2.forEach(function(ufoReport) {
     // console.log(ufoReport);
     let row = tableHTML.append("tr");
     Object.entries(ufoReport).forEach(function([key, value]) {
