@@ -1,10 +1,14 @@
 // from data.js
 let tableData = data;
 let tableHTML = d3.select("tbody");
+
+// Set user input variables
 let dateData = d3.select("#datetime");
 let cityData = d3.select("#city");
 let stateData = d3.select("#state");
-console.log(tableHTML);
+let countryData = d3.select("#country");
+let shapeData = d3.select("#shape");
+// console.log(tableHTML);
 
 tableData.forEach(function(ufoReport) {
     // console.log(ufoReport);
@@ -25,21 +29,37 @@ button.on("click", function() {
   list.html("");
   // Reset table to filter
   let filteredData = tableData;
-  let filterArray = []
+  
+  // Remove all filterArray elements if not using
+  // let filterArray = []
   
   let filterDate = dateData.property("value");
   console.log(filterDate);
-  filterArray.push(filterDate);
+//   filterArray.push({
+//     key:   "datetime",
+//     value: filterDate
+// });
  
   let filterCity = cityData.property("value").trim().toLowerCase();
   console.log(filterCity);
-  filterArray.push(filterCity);
+//   filterArray.push({
+//     key:   "city",
+//     value: filterCity
+// });
 
   let filterState = stateData.property("value").trim().toLowerCase();
   console.log(filterState);
-  filterArray.push(filterState);
+//   filterArray.push({
+//     key:   "state",
+//     value: filterState
+// });
+  // console.log(filterArray);
 
-  console.log(filterArray);
+  let filterCountry = countryData.property("value").trim().toLowerCase();
+  console.log(filterCountry);
+
+  let filterShape = shapeData.property("value").trim().toLowerCase();
+  console.log(filterShape);
 
   if (filterDate !== "") {
     filteredData = filteredData.filter(data => data.datetime === filterDate);
@@ -56,7 +76,23 @@ button.on("click", function() {
   }
   else {filteredData};
 
+  if (filterCountry !== "") {
+    filteredData = filteredData.filter( data => data.country === filterCountry);
+  }
+  else {filteredData};
+
+  if (filterShape !== "") {
+    filteredData = filteredData.filter( data => data.shape === filterShape);
+  }
+  else {filteredData};
+
+// need to assign to key/value pattern
 // filterArray.forEach(function(userInput) {
+//   if (userInput !== "") {
+//     filteredData = filteredData.filter( data => data.state === filterState);
+//   }
+//   else {filteredData};
+
 //   let inputElements = d3.select(userInput);
 //   console.log(inputElements);
 //   let inputValues = inputElements.property("value");
