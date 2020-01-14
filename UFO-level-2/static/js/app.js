@@ -1,4 +1,5 @@
-console.log('enhancements made: take different date formats, ignore uppercase for other fields'
+console.log('enhancements made: accepts various date formats,\
+ accepts uppercase text, "enter" button triggers filter button, filters clear after submission'
 )
 
 // from data.js
@@ -11,22 +12,6 @@ let cityData = d3.select("#city");
 let stateData = d3.select("#state");
 let countryData = d3.select("#country");
 let shapeData = d3.select("#shape");
-// console.log(tableHTML);
-
-// window.onload = function(){
-//   const distinctShapes = [...new Set(data.map(x => x.shape))];
-//   document.getElementById('demo').innerHTML = distinctShapes;
-// }
-
-// let text = "<ul>";
-// distinctShapes.forEach(myFunction);
-// text += "</ul>";
-// document.getElementById("demo").innerHTML = text;
-
-// function myFunction(value) {
-//   text += "<li>" + value + "</li>";
-// } 
-
 
 tableData.forEach(function(ufoReport) {
     // console.log(ufoReport);
@@ -41,6 +26,7 @@ tableData.forEach(function(ufoReport) {
 // Select the button
 let button = d3.select("#filter-btn");
 
+// *** Enter key triggers button ***
 // // // Get the input field or if multiple fields, get the ul id
 let input = document.getElementById("filters")
 // // Execute a function when the user releases a key on the keyboard
@@ -87,6 +73,9 @@ button.on("click", function submitFilter() {
 
   if (filterCity !== "") {
     filteredData = filteredData.filter(data => data.city === filterCity);
+    // if wanted to match partial strings could use:
+      // filteredData = filteredData.filter(data => data.city.startsWith(filterCity));
+      // filteredData = filteredData.filter(data => data.city.includes(filterCity));
   }
   else {filteredData};
 
@@ -105,35 +94,6 @@ button.on("click", function submitFilter() {
   }
   else {filteredData};
 
-  // if (filteredData !== []) {
-  // console.log(distinctShapes);
-  // };
-
-// need to assign to key/value pattern
-// filterArray.forEach(function(userInput) {
-//   if (userInput !== "") {
-//     filteredData = filteredData.filter( data => data.state === filterState);
-//   }
-//   else {filteredData};
-
-//   let inputElements = d3.select(userInput);
-//   console.log(inputElements);
-//   let inputValues = inputElements.property("value");
-//   console.log(inputValues);
-
-//   // if inputValues !== null;
-//   filteredData = tableData.filter(item => item.***userInput*** === inputValues);
-//   console.log(filteredData);
-// });
-
-
-//   filterArray.push({
-//     key:   "state",
-//     value: filterState
-// });
-  // console.log(filterArray);
-
-
   filteredData.forEach(function(ufoReport) {
     // console.log(ufoReport);
     let row = tableHTML.append("tr");
@@ -144,5 +104,8 @@ button.on("click", function submitFilter() {
     });
   });
 
-// })
+  // Reset form fields
+  document.getElementById("filter-form").reset();
 });
+
+
