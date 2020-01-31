@@ -1,4 +1,4 @@
-HTML, JavaScript, CSS, and D3.js code that creates a webpage with a table that is dynamically based upon a UFO sightings dataset.
+HTML, JavaScript, CSS, and D3 code that creates a webpage with a table that is dynamically based upon a UFO sightings dataset.
 
 ![header](https://github.com/scottinsactown/javascript-challenge/blob/master/UFO-level-2/static/images/Capture1.JPG)
 
